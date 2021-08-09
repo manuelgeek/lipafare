@@ -16,6 +16,7 @@ defmodule LipafareWeb.ChannelCase do
   """
 
   use ExUnit.CaseTemplate
+  alias Ecto.Adapters.SQL.Sandbox
 
   using do
     quote do
@@ -29,10 +30,10 @@ defmodule LipafareWeb.ChannelCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Lipafare.Repo)
+    :ok = Sandbox.checkout(Lipafare.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Lipafare.Repo, {:shared, self()})
+      Sandbox.mode(Lipafare.Repo, {:shared, self()})
     end
 
     :ok

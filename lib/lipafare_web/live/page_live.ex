@@ -1,4 +1,5 @@
 defmodule LipafareWeb.PageLive do
+  @moduledoc false
   use LipafareWeb, :live_view
 
   @impl true
