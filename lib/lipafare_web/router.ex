@@ -21,9 +21,12 @@ defmodule LipafareWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", LipafareWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", LipafareWeb.Api do
+    pipe_through :api
+
+    # Africa talking callback URL
+    post "v1/ussd", UssdEntryController, :index
+  end
 
   # Enables LiveDashboard only for development
   #
