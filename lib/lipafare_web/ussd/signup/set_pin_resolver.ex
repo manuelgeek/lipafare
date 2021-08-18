@@ -10,12 +10,16 @@ defmodule SetPinResolver do
   end
 
   def ussd_callback(%{data: %{name: name}} = menu, %{text: pin}, _) do
+    menu
+    |> ExUssd.set(data: %{name: name, pin: pin})
+    |> ExUssd.set(resolve: ConfirmPinResolver)
+
     cond do
       String.length(pin) !== 4 ->
         menu
         |> ExUssd.set(error: "The PIN should be 4 digits\n")
 
-      !is_numeric(pin) ->
+      !is_number?(pin) ->
         menu
         |> ExUssd.set(error: "The PIN should be digits only\n")
 
@@ -23,6 +27,16 @@ defmodule SetPinResolver do
         menu
         |> ExUssd.set(data: %{name: name, pin: pin})
         |> ExUssd.set(resolve: ConfirmPinResolver)
+    end
+  end
+
+  def is_number?(val) do
+    case Integer.parse(val) do
+      {_, ""} ->
+        true
+
+      _ ->
+        false
     end
   end
 end

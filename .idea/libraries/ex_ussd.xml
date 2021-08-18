@@ -5,10 +5,25 @@
       <root url="file://$PROJECT_DIR$/_build/test/lib/ex_ussd/ebin" />
       <root url="file://$PROJECT_DIR$/_build/dev/lib/ex_ussd/ebin" />
       <root url="file://$PROJECT_DIR$/_build/test/lib/ex_ussd/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/ex_ussd/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/test/lib/ex_ussd/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/ex_ussd/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/test/lib/ex_ussd/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/ex_ussd/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/test/lib/ex_ussd/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/ex_ussd/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/test/lib/ex_ussd/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/ex_ussd/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/test/lib/ex_ussd/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/ex_ussd/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/test/lib/ex_ussd/ebin" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="file://$PROJECT_DIR$/deps/ex_ussd/lib" />
+      <root url="file://$PROJECT_DIR$/../../OpenSource/ex_ussd/lib" />
+      <root url="file://$PROJECT_DIR$/../../OpenSource/ex_ussd/lib" />
+      <root url="file://$PROJECT_DIR$/../../OpenSource/ex_ussd/lib" />
     </SOURCES>
   </library>
 </component>
