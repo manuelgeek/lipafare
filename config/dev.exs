@@ -74,3 +74,9 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :at_ex,
+  api_key: "487f688a5e988bf354e9f3e2e843e1289a8bff26e377bdd8b099809e01b379e1",
+  # When changed to "false" one will use the live endpoint url
+  sandbox: true,
+  username: "sandbox"

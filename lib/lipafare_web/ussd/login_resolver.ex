@@ -1,4 +1,4 @@
-defmodule Lipafare.Ussd.LoginResolver do
+defmodule LipafareWeb.Ussd.LoginResolver do
   @moduledoc false
 
   use ExUssd

@@ -25,7 +25,7 @@ defmodule LipafareWeb.Router do
     pipe_through :api
 
     # Africa talking callback URL
-    post "v1/ussd", UssdEntryController, :index
+    post "/v1/ussd", UssdEntryController, :index
   end
 
   # Enables LiveDashboard only for development
