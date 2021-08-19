@@ -34,7 +34,10 @@ defmodule ConfirmPinResolver do
            pin: String.to_integer(pin)
          }) do
       {:ok, user} ->
-        AtEx.Sms.send_sms(%{to: phone, message: "Dear " <> user.name <> ", Welcome to LipaFare. Cheers"})
+        AtEx.Sms.send_sms(%{
+          to: phone,
+          message: "Dear " <> user.name <> ", Welcome to LipaFare. Cheers"
+        })
 
         menu
         |> ExUssd.set(title: "Account created !")
