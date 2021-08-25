@@ -10,7 +10,7 @@ defmodule LipafareWeb.Ussd.LoginResolver do
   end
 
   def ussd_callback(%{data: %{user: user}} = menu, api_parameters, _) do
-    case Bcrypt.check_pass(user, api_parameters.text, hash_key: "pin_hash") do
+    case Bcrypt.check_pass(user, api_parameters.text) do
       {:ok, user} ->
         menu
         |> ExUssd.set(title: "Welcome " <> user.name)

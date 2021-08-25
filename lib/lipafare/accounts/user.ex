@@ -6,7 +6,7 @@ defmodule Lipafare.Accounts.User do
 
   schema "users" do
     field :pin, :string, virtual: true
-    field :pin_hash, :string
+    field :password_hash, :string
     field :name, :string
     field :phone, :string
 
@@ -32,7 +32,7 @@ defmodule Lipafare.Accounts.User do
   end
 
   defp put_pass_hash(%Ecto.Changeset{valid?: true, changes: %{pin: pin}} = changeset) do
-    change(changeset, Bcrypt.add_hash(pin, hash_key: :pin_hash))
+    change(changeset, Bcrypt.add_hash(pin))
   end
 
   defp put_pass_hash(changeset), do: changeset

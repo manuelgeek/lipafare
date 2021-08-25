@@ -5,7 +5,7 @@ defmodule Lipafare.Repo.Migrations.CreateUsers do
     create table(:users) do
       add :name, :string
       add :phone, :string
-      add :pin_hash, :string
+      add :password_hash, :string
 
       timestamps()
     end
