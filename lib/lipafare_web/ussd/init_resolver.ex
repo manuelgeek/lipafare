@@ -49,6 +49,7 @@ defmodule LipafareWeb.Ussd.InitResolver do
         if user do
           menu
           |> ExUssd.set(name: "Hello " <> user.name <> ", Login")
+          |> ExUssd.set(data: %{user: user})
           |> ExUssd.set(resolve: Ussd.LoginResolver)
         else
           menu

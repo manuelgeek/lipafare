@@ -14,9 +14,9 @@ defmodule ConfirmPinResolver do
       menu
       |> ExUssd.set(data: %{name: name, pin: pin})
       |> ExUssd.set(
-        resolve: fn %{data: %{name: name, pin: pin}} = menu, _ ->
+        resolve: fn %{data: %{name: name}} = menu, _ ->
           menu
-          |> ExUssd.set(title: "Dear " <> menu.data.name <> "\nConfirm")
+          |> ExUssd.set(title: "Dear " <> name <> "\nConfirm")
           |> ExUssd.add(ExUssd.new(data: menu.data, name: "Accept", resolve: &create/2))
           |> ExUssd.add(ExUssd.new(name: "Cancel", resolve: &cancel/2))
         end
@@ -31,7 +31,7 @@ defmodule ConfirmPinResolver do
     case Accounts.create_user(%{
            name: name,
            phone: phone,
-           pin: String.to_integer(pin)
+           pin: pin
          }) do
       {:ok, user} ->
         AtEx.Sms.send_sms(%{

@@ -5,7 +5,7 @@ defmodule Lipafare.Accounts.User do
   import Ecto.Changeset
 
   schema "users" do
-    field :pin, :integer, virtual: true
+    field :pin, :string, virtual: true
     field :pin_hash, :string
     field :name, :string
     field :phone, :string
@@ -31,8 +31,8 @@ defmodule Lipafare.Accounts.User do
     |> unique_constraint(:phone)
   end
 
-  defp put_pass_hash(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do
-    change(changeset, Bcrypt.add_hash(password))
+  defp put_pass_hash(%Ecto.Changeset{valid?: true, changes: %{pin: pin}} = changeset) do
+    change(changeset, Bcrypt.add_hash(pin, hash_key: :pin_hash))
   end
 
   defp put_pass_hash(changeset), do: changeset
