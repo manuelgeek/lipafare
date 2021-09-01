@@ -5,13 +5,15 @@ defmodule LipafareWeb.Ussd.SignupResolver do
 
   def ussd_init(menu, _) do
     menu
-    |> ExUssd.set(title: "Create Account\nEnter Full Name")
+    |> ExUssd.set(title: "Create Account")
+    |> ExUssd.set(navigate: &create_account_form/2)
   end
 
   def ussd_callback(menu, params, _) do
     #    ExUssd.new(fn _, _ ->
     menu
     |> ExUssd.set(data: %{name: params.text})
+    #    |> ExUssd.set(title: "Welcome " <> params.text <> "\nEnter Your 4 digit PIN")
     |> ExUssd.set(resolve: &create_account_form/2)
 
     #    end)

@@ -10,10 +10,6 @@ defmodule SetPinResolver do
   end
 
   def ussd_callback(%{data: %{name: name}} = menu, %{text: pin}, _) do
-    menu
-    |> ExUssd.set(data: %{name: name, pin: pin})
-    |> ExUssd.set(resolve: ConfirmPinResolver)
-
     cond do
       String.length(pin) !== 4 ->
         menu
