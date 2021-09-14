@@ -3,9 +3,9 @@ defmodule LipafareWeb.Ussd.LoginResolver do
 
   use ExUssd
 
-  def ussd_init(menu, _) do
+  def ussd_init(%{data: %{user: user}} = menu, _) do
     menu
-    |> ExUssd.set(title: "Enter your PIN")
+    |> ExUssd.set(title: "Welcome " <> user.name <> "\nEnter your PIN")
     |> ExUssd.set(show_navigation: false)
   end
 

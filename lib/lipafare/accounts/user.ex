@@ -9,6 +9,7 @@ defmodule Lipafare.Accounts.User do
     field :password_hash, :string
     field :name, :string
     field :phone, :string
+    has_one :wallets, Lipafare.Accounts.Wallet, on_delete: :delete_all
 
     timestamps()
   end
