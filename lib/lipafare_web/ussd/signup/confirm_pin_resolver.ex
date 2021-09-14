@@ -57,22 +57,7 @@ defmodule ConfirmPinResolver do
             end
           )
         )
-        |> ExUssd.add(
-          ExUssd.new(
-            name: "Change Pin",
-            resolve: fn menu, _ ->
-              menu |> ExUssd.set(title: "Coming soon") |> ExUssd.set(should_close: true)
-            end
-          )
-        )
-        |> ExUssd.add(
-          ExUssd.new(
-            name: "Delete Account",
-            resolve: fn menu, _ ->
-              menu |> ExUssd.set(title: "Coming soon") |> ExUssd.set(should_close: true)
-            end
-          )
-        )
+        |> ExUssd.add(ExUssd.new(name: "Settings", resolve: SettingsResolver))
 
       {:error, _} ->
         menu

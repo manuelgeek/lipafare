@@ -17,11 +17,10 @@ defmodule DeleteResolver do
       {:ok, user} ->
         menu
         |> ExUssd.set(
-          resolve: fn %{data: %{name: name}} = menu, _ ->
+          resolve: fn menu, _ ->
             menu
-            |> ExUssd.set(data: %{user: name})
-            |> ExUssd.set(title: "Dear " <> name <> "\nConfirm")
-            |> ExUssd.add(ExUssd.new(data: menu.data, name: "Accept", resolve: &delete/2))
+            |> ExUssd.set(title: "Dear " <> user.name <> "\nConfirm")
+            |> ExUssd.add(ExUssd.new(data: %{user: user}, name: "Accept", resolve: &delete/2))
             |> ExUssd.add(ExUssd.new(name: "Cancel", resolve: &cancel/2))
           end
         )

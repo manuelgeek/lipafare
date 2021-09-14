@@ -13,39 +13,8 @@ defmodule LipafareWeb.Ussd.LoginResolver do
     case Bcrypt.check_pass(user, payload.text) do
       {:ok, user} ->
         menu
-        |> ExUssd.set(title: "Welcome " <> user.name)
-        |> ExUssd.add(
-          ExUssd.new(
-            name: "Lipa Fare",
-            resolve: fn menu, _ ->
-              menu |> ExUssd.set(title: "Coming soon") |> ExUssd.set(should_close: true)
-            end
-          )
-        )
-        |> ExUssd.add(
-          ExUssd.new(
-            name: "Top up Wallet",
-            resolve: fn menu, _ ->
-              menu |> ExUssd.set(title: "Coming soon") |> ExUssd.set(should_close: true)
-            end
-          )
-        )
-        |> ExUssd.add(
-          ExUssd.new(
-            name: "Change Pin",
-            resolve: fn menu, _ ->
-              menu |> ExUssd.set(title: "Coming soon") |> ExUssd.set(should_close: true)
-            end
-          )
-        )
-        |> ExUssd.add(
-          ExUssd.new(
-            name: "Delete Account",
-            resolve: fn menu, _ ->
-              menu |> ExUssd.set(title: "Coming soon") |> ExUssd.set(should_close: true)
-            end
-          )
-        )
+        |> ExUssd.set(data: menu.data)
+        |> ExUssd.set(resolve: HomeResolver)
 
       {:error, _msg} ->
         menu

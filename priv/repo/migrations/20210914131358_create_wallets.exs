@@ -10,6 +10,5 @@ defmodule Lipafare.Repo.Migrations.CreateWallets do
 
       timestamps()
     end
-
   end
 end
