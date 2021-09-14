@@ -58,7 +58,7 @@ defmodule LipafareWeb.Ussd.InitResolver do
             resolve: fn menu, _ ->
               menu
               |> ExUssd.set(title: "Create Account\nEnter Full Name")
-              |> ExUssd.set(navigate: SetPinResolver)
+              |> ExUssd.set(resolve: SetPinResolver)
             end
           )
         end
@@ -68,7 +68,7 @@ defmodule LipafareWeb.Ussd.InitResolver do
     |> ExUssd.add(
       ExUssd.new(
         name: "About Us",
-        resolve: fn menu, _api_parameters ->
+        resolve: fn menu, _payload ->
           menu
           |> ExUssd.set(title: "About \n This is Lipa Fare USSD App", should_close: true)
         end

@@ -12,8 +12,6 @@ W
 config/dev.exs,a/c/ac4f4eb5624d27d4dd2e503cbc8c6f07a6c96aae
 L
 .github/workflows/elixir.yml,4/1/4159231ca4b244c88d8b28fded5e5fd6c0ee5f63
-b
-2lib/lipafare_web/ussd/signup/full_name_resolver.ex,b/0/b0ef4518880c1aad2ae8e743cc5388a2dacb35f3
 X
 (lib/lipafare_web/ussd/signup_resolver.ex,5/5/5529bc085e031f1a14e3372422bb5b6c7613131a
 8

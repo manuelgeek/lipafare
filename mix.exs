@@ -36,7 +36,7 @@ defmodule Lipafare.MixProject do
       {:phoenix, "~> 1.5.9"},
       {:phoenix_ecto, "~> 4.1"},
       {:ecto_sql, "~> 3.4"},
-      {:postgrex, ">= 0.0.0"},
+      {:postgrex, ">= 0.15.10"},
       {:phoenix_live_view, "~> 0.15.1"},
       {:floki, ">= 0.30.0", only: :test},
       {:phoenix_html, "~> 2.11"},
@@ -48,8 +48,8 @@ defmodule Lipafare.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
-      #      {:ex_ussd, git: "https://github.com/beamkenya/ex_ussd", branch: "develop"},
-      {:ex_ussd, path: "./../../OpenSource/ex_ussd"},
+      {:ex_ussd, git: "https://github.com/beamkenya/ex_ussd", branch: "develop"},
+      #      {:ex_ussd, path: "./../../OpenSource/ex_ussd"},
       {:bcrypt_elixir, "~> 2.3.0"},
       {:at_ex, "~> 0.20.22"}
     ]

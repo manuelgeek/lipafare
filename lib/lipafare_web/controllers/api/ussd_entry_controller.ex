@@ -17,7 +17,7 @@ defmodule LipafareWeb.Api.UssdEntryController do
     response =
       ExUssd.goto(
         menu: menu,
-        api_parameters: %{
+        payload: %{
           "phone_number" => phone_number,
           "service_code" => service_code,
           "session_id" => session_id,
