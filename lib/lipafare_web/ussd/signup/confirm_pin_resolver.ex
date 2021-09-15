@@ -17,7 +17,8 @@ defmodule ConfirmPinResolver do
         resolve: fn %{data: %{name: name}} = menu, _ ->
           menu
           |> ExUssd.set(title: "Dear " <> name <> "\nConfirm")
-          |> ExUssd.add(ExUssd.new(data: menu.data, name: "Accept", resolve: &create/2))
+          |> ExUssd.set(data: menu.data)
+          |> ExUssd.add(ExUssd.new("Accept", &create/2))
           |> ExUssd.add(ExUssd.new(name: "Cancel", resolve: &cancel/2))
         end
       )
@@ -38,26 +39,9 @@ defmodule ConfirmPinResolver do
           to: phone,
           message: "Dear " <> user.name <> ", Welcome to LipaFare. Cheers"
         })
-
         menu
-        |> ExUssd.set(title: "Account created !")
-        |> ExUssd.add(
-          ExUssd.new(
-            name: "Lipa Fare",
-            resolve: fn menu, _ ->
-              menu |> ExUssd.set(title: "Coming soon") |> ExUssd.set(should_close: true)
-            end
-          )
-        )
-        |> ExUssd.add(
-          ExUssd.new(
-            name: "Top up Wallet",
-            resolve: fn menu, _ ->
-              menu |> ExUssd.set(title: "Coming soon") |> ExUssd.set(should_close: true)
-            end
-          )
-        )
-        |> ExUssd.add(ExUssd.new(name: "Settings", resolve: SettingsResolver))
+        |> ExUssd.set(data: %{user: user})
+        |> ExUssd.set(resolve: HomeResolver)
 
       {:error, _} ->
         menu

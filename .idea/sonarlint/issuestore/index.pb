@@ -10,7 +10,5 @@ W
 'lib/lipafare_web/views/error_helpers.ex,e/3/e378fec63aa5dbf06947c5ad89f9de402be6044a
 >
 config/dev.exs,a/c/ac4f4eb5624d27d4dd2e503cbc8c6f07a6c96aae
-L
-.github/workflows/elixir.yml,4/1/4159231ca4b244c88d8b28fded5e5fd6c0ee5f63
 8
 mix.lock,e/b/ebcb86d0416a58066f67dffa348aa2b2f4f5dca8
