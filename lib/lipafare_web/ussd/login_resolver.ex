@@ -10,15 +10,10 @@ defmodule LipafareWeb.Ussd.LoginResolver do
   end
 
   def ussd_callback(%{data: %{user: user}} = menu, payload, _) do
-    case Bcrypt.check_pass(user, payload.text) do
-      {:ok, user} ->
-        menu
-        |> ExUssd.set(data: menu.data)
-        |> ExUssd.set(resolve: HomeResolver)
-
-      {:error, _msg} ->
-        menu
-        |> ExUssd.set(error: "The PIN entered is wrong\n")
+    with :ok <- Utils.check_pin(menu, user, payload.text) do
+      menu
+      |> ExUssd.set(data: menu.data)
+      |> ExUssd.set(resolve: HomeResolver)
     end
   end
 end

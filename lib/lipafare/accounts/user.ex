@@ -23,6 +23,13 @@ defmodule Lipafare.Accounts.User do
     |> put_pass_hash
   end
 
+  def update_pin_changeset(user, attrs) do
+    user
+    |> cast(attrs, [:pin])
+    |> validate_required([:pin])
+    |> put_pass_hash
+  end
+
   defp unique_phone_no(changeset) do
     changeset
     |> validate_format(

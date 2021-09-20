@@ -13,21 +13,16 @@ defmodule DeleteResolver do
   def ussd_callback(menu, %{text: pin, phone_number: phone}, _) do
     user = Accounts.get_by(%{"phone" => phone})
 
-    case Bcrypt.check_pass(user, pin) do
-      {:ok, user} ->
-        menu
-        |> ExUssd.set(
-          resolve: fn menu, _ ->
-            menu
-            |> ExUssd.set(title: "Dear " <> user.name <> "\nConfirm")
-            |> ExUssd.add(ExUssd.new(data: %{user: user}, name: "Accept", resolve: &delete/2))
-            |> ExUssd.add(ExUssd.new(name: "Cancel", resolve: &cancel/2))
-          end
-        )
-
-      {:error, _msg} ->
-        menu
-        |> ExUssd.set(error: "The PIN entered is wrong\n")
+    with :ok <- Utils.check_pin(menu, user, pin) do
+      menu
+      |> ExUssd.set(
+        resolve: fn menu, _ ->
+          menu
+          |> ExUssd.set(title: "Dear " <> user.name <> "\nConfirm")
+          |> ExUssd.add(ExUssd.new(data: %{user: user}, name: "Accept", resolve: &delete/2))
+          |> ExUssd.add(ExUssd.new(name: "Cancel", resolve: &cancel/2))
+        end
+      )
     end
   end
 
@@ -44,9 +39,12 @@ defmodule DeleteResolver do
     end
   end
 
-  def cancel(menu, _) do
+  def cancel(menu, %{phone_number: phone}) do
+    user = Accounts.get_by(%{"phone" => phone})
+
     menu
-    |> ExUssd.set(title: "Account deletion cancelled !")
-    |> ExUssd.set(should_close: true)
+    |> ExUssd.set(title: "Account deletion cancelled !\nPress any key to proceed")
+    |> ExUssd.set(data: %{user: user})
+    |> ExUssd.set(resolve: HomeResolver)
   end
 end

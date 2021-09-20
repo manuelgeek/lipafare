@@ -13,19 +13,9 @@ defmodule ChangePinResolver do
   def ussd_callback(menu, %{text: pin, phone_number: phone}, _) do
     user = Accounts.get_by(%{"phone" => phone})
 
-    case Bcrypt.check_pass(user, pin) do
-      {:ok, user} ->
-        menu
-        |> ExUssd.set(
-             resolve: fn menu, _ ->
-               menu
-               |> ExUssd.set(resolve: NewPinResolver)
-             end
-           )
-
-      {:error, _msg} ->
-        menu
-        |> ExUssd.set(error: "The PIN entered is wrong\n")
+    with :ok <- Utils.check_pin(menu, user, pin) do
+      menu
+      |> ExUssd.set(resolve: NewPinResolver)
     end
   end
 end

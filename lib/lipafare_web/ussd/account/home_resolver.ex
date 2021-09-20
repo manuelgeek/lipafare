@@ -24,5 +24,4 @@ defmodule HomeResolver do
     )
     |> ExUssd.add(ExUssd.new(name: "Settings", resolve: SettingsResolver))
   end
-
 end

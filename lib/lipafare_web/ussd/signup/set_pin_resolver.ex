@@ -16,5 +16,4 @@ defmodule SetPinResolver do
       |> ExUssd.set(resolve: ConfirmPinResolver)
     end
   end
-
 end

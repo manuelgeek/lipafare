@@ -10,7 +10,7 @@ defmodule ConfirmPinResolver do
   end
 
   def ussd_callback(%{data: %{name: name, pin: pin}} = menu, params, _) do
-    if String.equivalent?(params.text, pin) do
+    with :ok <- Utils.pin_is_equivalent(menu, pin, params.text) do
       menu
       |> ExUssd.set(data: %{name: name, pin: pin})
       |> ExUssd.set(
@@ -22,9 +22,6 @@ defmodule ConfirmPinResolver do
           |> ExUssd.add(ExUssd.new(name: "Cancel", resolve: &cancel/2))
         end
       )
-    else
-      menu
-      |> ExUssd.set(error: "The PINs should be same\n")
     end
   end
 
@@ -39,14 +36,14 @@ defmodule ConfirmPinResolver do
           to: phone,
           message: "Dear " <> user.name <> ", Welcome to LipaFare. Cheers"
         })
+
         menu
         |> ExUssd.set(data: %{user: user})
         |> ExUssd.set(resolve: HomeResolver)
 
       {:error, _} ->
         menu
-        |> ExUssd.set(title: "Error Occurred, try again !")
-        |> ExUssd.set(should_close: true)
+        |> ExUssd.set(error: "Error Occurred, try again !")
     end
   end
 

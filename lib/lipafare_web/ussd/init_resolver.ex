@@ -64,7 +64,14 @@ defmodule LipafareWeb.Ussd.InitResolver do
         end
       end)
     )
-    |> ExUssd.add(ExUssd.new(name: "Lipa Fare", resolve: HomeResolver))
+    |> ExUssd.add(
+      ExUssd.new(
+        name: "Lipa Fare",
+        resolve: fn menu, _ ->
+          menu |> ExUssd.set(title: "Coming soon") |> ExUssd.set(should_close: true)
+        end
+      )
+    )
     |> ExUssd.add(
       ExUssd.new(
         name: "About Us",

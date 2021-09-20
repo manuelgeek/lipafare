@@ -34,6 +34,12 @@ defmodule Lipafare.Accounts do
     |> Repo.update()
   end
 
+  def update_pin(%User{} = user, attrs) do
+    user
+    |> User.update_pin_changeset(attrs)
+    |> Repo.update()
+  end
+
   def delete_user(%User{} = user) do
     Repo.delete(user)
   end
