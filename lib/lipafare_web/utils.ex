@@ -18,7 +18,7 @@ defmodule Utils do
 
   def check_pin(menu, user, pin) do
     case Bcrypt.check_pass(user, pin) do
-      {:ok, user} ->
+      {:ok, _user} ->
         :ok
 
       {:error, _msg} ->
@@ -40,7 +40,6 @@ defmodule Utils do
     case Integer.parse(val) do
       {_, ""} ->
         false
-
       _ ->
         true
     end

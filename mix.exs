@@ -48,6 +48,7 @@ defmodule Lipafare.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+#      {:ex_ussd, "~> 1.0.0-rc-1"},
       {:ex_ussd, git: "https://github.com/beamkenya/ex_ussd", branch: "develop"},
       #      {:ex_ussd, path: "./../../OpenSource/ex_ussd"},
       {:bcrypt_elixir, "~> 2.3.0"},

@@ -23,5 +23,6 @@ defmodule HomeResolver do
       )
     )
     |> ExUssd.add(ExUssd.new(name: "Settings", resolve: SettingsResolver))
+    |> ExUssd.set(nav: ExUssd.Nav.new(type: :back, name: "BACK", match: "0", show: false))
   end
 end
