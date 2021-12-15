@@ -3,8 +3,8 @@ defmodule Lipafare.Accounts.Wallet do
   import Ecto.Changeset
 
   schema "wallets" do
-    field :balance, :integer
-    field :status, :string
+    field :balance, :integer, default: 0
+    field :status, :string, default: "active"
     belongs_to :user, Lipafare.Accounts.User
 
     timestamps()
@@ -13,7 +13,7 @@ defmodule Lipafare.Accounts.Wallet do
   @doc false
   def changeset(wallet, attrs) do
     wallet
-    |> cast(attrs, [:status, :balance])
+    |> cast(attrs, [:status, :balance, :user_id])
     |> validate_required([:status, :balance])
   end
 end

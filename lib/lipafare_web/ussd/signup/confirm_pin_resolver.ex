@@ -32,6 +32,7 @@ defmodule ConfirmPinResolver do
            pin: pin
          }) do
       {:ok, user} ->
+      IO.inspect(user)
         AtEx.Sms.send_sms(%{
           to: phone,
           message: "Dear " <> user.name <> ", Welcome to LipaFare. Cheers"

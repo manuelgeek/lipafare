@@ -23,9 +23,18 @@ defmodule Lipafare.Accounts do
   end
 
   def create_user(attrs \\ %{}) do
-    %User{}
-    |> User.changeset(attrs)
-    |> Repo.insert()
+    Repo.transaction fn ->
+      user = %User{}
+      |> User.changeset(attrs)
+      |> Repo.insert()
+      |> elem(1)
+
+
+      Ecto.build_assoc(user, :wallets, balance: 0)
+      |> Repo.insert()
+
+      user
+    end
   end
 
   def update_user(%User{} = user, attrs) do
