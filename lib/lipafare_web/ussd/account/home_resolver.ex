@@ -14,14 +14,7 @@ defmodule HomeResolver do
         end
       )
     )
-    |> ExUssd.add(
-      ExUssd.new(
-        name: "Top up Wallet",
-        resolve: fn menu, _ ->
-          menu |> ExUssd.set(title: "Coming soon") |> ExUssd.set(should_close: true)
-        end
-      )
-    )
+    |> ExUssd.add(ExUssd.new(name: "Wallet", resolve: WalletResolver))
     |> ExUssd.add(ExUssd.new(name: "Settings", resolve: SettingsResolver))
     |> ExUssd.set(nav: ExUssd.Nav.new(type: :back, name: "BACK", match: "0", show: false))
   end
